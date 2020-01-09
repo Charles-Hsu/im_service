@@ -28,7 +28,7 @@
 
 4. 编译
 
-   cd im_service
+   // cd im_service
     
    mkdir bin
     
@@ -38,37 +38,53 @@
 
 5. 安装mysql数据库, redis, 并导入db.sql
 
+   mysql> source db.sql;
+
 6. 配置程序
    配置项的说明参考ims.cfg.sample, imr.cfg.sample, im.cfg.sample
+   
+   cp ims.cfg.sample ims.cfg
+   cp imr.cfg.sample imr.cfg
+   cp im.cfg.sample im.cfg
 
 7. 启动程序
 
   * 创建配置文件中配置的im&ims消息存放路径
 
-    mkdir /tmp/im
-
-    mkdir /tmp/impending
+    mkdir ./tmp/im
+    mkdir ./tmp/pending  <--- 參考 im.cfg 裡定義的
+    mkdir ./tmp/impending   <--- 原來的 README.md 的
 
   * 创建日志文件路径
     
-    mkdir /data/logs/ims
-
-    mkdir /data/logs/imr
-
-    mkdir /data/logs/im
+    mkdir ./data/logs/ims
+    mkdir ./data/logs/imr
+    mkdir ./data/logs/im
 
   * 启动im服务
 
-    pushd \`dirname $0\` > /dev/null
+    //pushd \`dirname $0\` > /dev/null
 
+    
+    pwd
+    /Users/chia/go/src/github.com/GoBelieveIO/im_service
+    
     BASEDIR=\`pwd\`
+    nohup $BASEDIR/bin/ims -log_dir=$BASEDIR/data/logs/ims ims.cfg >$BASEDIR/data/logs/ims/ims.log 2>&1 &
+    nohup $BASEDIR/bin/imr -log_dir=$BASEDIR/data/logs/imr imr.cfg >$BASEDIR/data/logs/imr/imr.log 2>&1 &
+    nohup $BASEDIR/bin/im  -log_dir=$BASEDIR/data/logs/im  im.cfg  >$BASEDIR/data/logs/im/im.log 2>&1 &
+    
+    //nohup $BASEDIR/ims -log_dir=/data/logs/ims ims.cfg >/data/logs/ims/ims.log 2>&1 &
+    nohup $BASEDIR/bin/ims -log_dir=$BASEDIR/data/logs/ims ims.cfg >$BASEDIR/data/logs/ims/ims.log 2>&1 &
+    //nohup bin/ims ims.cfg -log_dir=./data/logs/ims > ./data/logs/ims/ims.log 2>&1 &
 
-    nohup $BASEDIR/ims -log_dir=/data/logs/ims ims.cfg >/data/logs/ims/ims.log 2>&1 &
+    //nohup $BASEDIR/imr -log_dir=/data/logs/imr imr.cfg >/data/logs/imr/imr.log 2>&1 &
+    nohup $BASEDIR/bin/imr -log_dir=$BASEDIR/data/logs/imr imr.cfg >$BASEDIR/data/logs/imr/imr.log 2>&1 &
+    //nohup bin/imr -log_dir=./data/logs/imr imr.cfg >./data/logs/imr/imr.log 2>&1 &
 
-    nohup $BASEDIR/imr -log_dir=/data/logs/imr imr.cfg >/data/logs/imr/imr.log 2>&1 &
-
-    nohup $BASEDIR/im -log_dir=/data/logs/im im.cfg >/data/logs/im/im.log 2>&1 &
-
+    //nohup $BASEDIR/im -log_dir=/data/logs/im im.cfg >/data/logs/im/im.log 2>&1 &
+    nohup $BASEDIR/bin/im -log_dir=$BASEDIR/data/logs/im im.cfg >$BASEDIR/data/logs/im/im.log 2>&1 &
+    
 
 ## token的格式
 
