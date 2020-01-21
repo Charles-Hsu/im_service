@@ -59,7 +59,7 @@
 
   * 启动im服务
 
-        //pushd \`dirname $0\` > /dev/null
+        pushd `dirname $0` > /dev/null
         pwd
         /Users/chia/go/src/github.com/GoBelieveIO/im_service
     
