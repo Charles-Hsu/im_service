@@ -16,29 +16,25 @@
 
 2. 下载im_service代码
 
-   cd $GOPATH/src/github.com/GoBelieveIO
-
-   git clone https://github.com/GoBelieveIO/im_service.git
+       cd $GOPATH/src/github.com/GoBelieveIO
+       git clone https://github.com/GoBelieveIO/im_service.git
 
 3. 安装依赖
 
-   cd im_service
-
-   dep ensure
+       cd im_service
+       dep ensure
 
 4. 编译
 
-   // cd im_service
-    
-   mkdir bin
-    
-   make install
+       cd im_service   
+       mkdir bin
+       make install
     
    可执行程序在bin目录下
 
 5. 安装mysql数据库, redis, 并导入db.sql
 
-   mysql> source db.sql;
+       mysql> source db.sql;
 
 6. 配置程序
    配置项的说明参考ims.cfg.sample, imr.cfg.sample, im.cfg.sample
