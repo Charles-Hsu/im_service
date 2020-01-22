@@ -44,6 +44,20 @@
 
        mysql> source db.sql;
 
+- redis 的 port 為 6379, 如果沒有啟動會有 connection refused 的 error
+    
+      % redis-cli
+      Could not connect to Redis at 127.0.0.1:6379: Connection refused
+      not connected>
+      
+. 執行下列指令
+
+    $ redis-server /usr/local/etc/redis.conf &
+    % redis-cli
+    127.0.0.1:6379> ping
+    PONG
+    127.0.0.1:6379>
+
 6. 配置程序
    配置项的说明参考ims.cfg.sample, imr.cfg.sample, im.cfg.sample
    
