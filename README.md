@@ -57,6 +57,8 @@
     127.0.0.1:6379> ping
     PONG
     127.0.0.1:6379>
+    
+可參考這裏 Mac下安裝和配置Redis![https://www.itread01.com/content/1531505056.html]
 
 6. 配置程序
    配置项的说明参考ims.cfg.sample, imr.cfg.sample, im.cfg.sample
