@@ -63,7 +63,7 @@
         pwd
         /Users/chia/go/src/github.com/GoBelieveIO/im_service
     
-        BASEDIR=\`pwd\`
+        BASEDIR=`pwd`
         nohup $BASEDIR/bin/ims -log_dir=$BASEDIR/data/logs/ims ims.cfg >$BASEDIR/data/logs/ims/ims.log 2>&1 &
         nohup $BASEDIR/bin/imr -log_dir=$BASEDIR/data/logs/imr imr.cfg >$BASEDIR/data/logs/imr/imr.log 2>&1 &
         nohup $BASEDIR/bin/im  -log_dir=$BASEDIR/data/logs/im  im.cfg  >$BASEDIR/data/logs/im/im.log 2>&1 &
