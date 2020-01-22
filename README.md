@@ -31,6 +31,11 @@
        make install
     
    可执行程序在bin目录下
+   
+- 有錯誤訊息
+      # command-line-arguments
+      ./sio.go:94:28: undefined: engineio.BinaryMessage
+      ./sio.go:118:10: undefined: engineio.MessageText
 
 5. 安装mysql数据库, redis, 并导入db.sql
 
