@@ -47,9 +47,9 @@
 
   * 创建配置文件中配置的im&ims消息存放路径
 
-        mkdir ./tmp/im
-        mkdir ./tmp/pending  <--- 參考 im.cfg 裡定義的
-        mkdir ./tmp/impending   <--- 原來的 README.md 的
+        mkdir /tmp/im
+        mkdir /tmp/pending  <--- 參考 im.cfg 裡定義的
+        mkdir /tmp/impending   <--- 原來的 README.md 的
 
   * 创建日志文件路径
     
@@ -67,6 +67,18 @@
         nohup $BASEDIR/bin/ims -log_dir=$BASEDIR/data/logs/ims ims.cfg >$BASEDIR/data/logs/ims/ims.log 2>&1 &
         nohup $BASEDIR/bin/imr -log_dir=$BASEDIR/data/logs/imr imr.cfg >$BASEDIR/data/logs/imr/imr.log 2>&1 &
         nohup $BASEDIR/bin/im  -log_dir=$BASEDIR/data/logs/im  im.cfg  >$BASEDIR/data/logs/im/im.log 2>&1 &
+    
+        $ ps -ef | grep /bin/im
+        501 44394 38935   0 12:29PM ttys020    0:00.40 /Users/chia/go/src/github.com/GoBelieveIO/im_service/bin/ims -log_dir=/Users/chia/go/src/github.com/GoBelieveIO/im_service/data/logs/ims ims.cfg
+        501 44399 38935   0 12:30PM ttys020    0:00.05 /Users/chia/go/src/github.com/GoBelieveIO/im_service/bin/imr -log_dir=/Users/chia/go/src/github.com/GoBelieveIO/im_service/data/logs/imr imr.cfg
+        501 44419 38935   0 12:30PM ttys020    0:01.02 /Users/chia/go/src/github.com/GoBelieveIO/im_service/bin/im -log_dir=/Users/chia/go/src/github.com/GoBelieveIO/im_service/data/logs/im im.cfg
+        
+        $ sudo lsof -iTCP -sTCP:LISTEN -n -P
+        COMMAND   PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+        ims     44394   chia    8u  IPv6 0xebb5d44c048cbc9b      0t0  TCP *:13333 (LISTEN)
+        ims     44394   chia    9u  IPv6 0xebb5d44c048cb67b      0t0  TCP *:3334 (LISTEN)
+        imr     44399   chia    4u  IPv6 0xebb5d44c048c97db      0t0  TCP *:4444 (LISTEN)
+        
     
         //nohup $BASEDIR/ims -log_dir=/data/logs/ims ims.cfg >/data/logs/ims/ims.log 2>&1 &
         nohup $BASEDIR/bin/ims -log_dir=$BASEDIR/data/logs/ims ims.cfg >$BASEDIR/data/logs/ims/ims.log 2>&1 &
